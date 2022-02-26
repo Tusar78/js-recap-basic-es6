@@ -32,6 +32,7 @@
 // }
 
 // Another Example
+/*
 const loadCountries = () => {
   fetch("https://restcountries.com/v3.1/all")
     .then((response) => response.json())
@@ -64,3 +65,45 @@ const displayCountries = (data) => {
     countryContainer.appendChild(div);
   });
 };
+*/
+
+const loadCountries = () => {
+  fetch("https://restcountries.com/v3.1/all")
+    .then((response) => response.json())
+    .then((data) => displayData(data));
+};
+
+loadCountries()
+
+const countryContainer = document.getElementById("country-container");
+const displayData = (data) => {
+  data.forEach((countries) => {
+    const div = document.createElement("div");
+    div.classList.add("country");
+    div.innerHTML = `
+    <h3>${countries.name.common}</h3>
+    <p>${countries.capital}</p>   
+    <button class="btn btn-secondary" onclick="loadCountryByName('${countries.name.official}')">Click</button> 
+  `;
+  countryContainer.appendChild(div);
+  });
+};
+
+const loadCountryByName = data => {
+  const url = `https://restcountries.com/v3.1/name/${data}`
+  fetch(url)
+    .then(response => response.json())
+    .then(country => displayCountryName(country))
+}
+
+const displayCountryName = countryName => {
+  countryName.forEach(element => {
+    const individual = document.getElementById('individual');
+    individual.classList.add('country')
+    individual.innerHTML = `
+      <img class="img-fluid" src="${element.flags.png}">
+      <h3>${element.name.official}</h3>      
+      <p>Our Population is: ${element.population}</p>
+    `
+  });
+}
