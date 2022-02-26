@@ -9,3 +9,15 @@ h2,
 h3 {
   font-family: "Playfair Display", serif;
 }
+
+#country-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+}
+
+.country {
+  border: 2px solid orange;
+  border-radius: .4rem;
+  padding: 1rem;
+}
