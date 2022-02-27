@@ -5,6 +5,8 @@ const loadComments = () => {
     .then((comments) => displayComments(comments));
 };
 
+loadComments()
+
 const displayComments = (data) => {
   const comments = document.getElementById("comments");
   data.forEach((element) => {
@@ -16,7 +18,7 @@ const displayComments = (data) => {
           <span class="badge bg-danger">${element.id}</span>
           <p class="card-text">${element.body}</p>
           <hr />
-          <a href="mailto:Zola@lizzie.com">${element.email}</a>
+          <a href="mailto:Zola@lizzie.com">Email: ${element.email}</a>
         </div>
       </div>
     `;
