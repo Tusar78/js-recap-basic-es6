@@ -2,6 +2,7 @@ const searchFood = () => {
   const input = document.getElementById("search-input");
   const inputValue = input.value;
   input.value = "";
+  document.getElementById('show-food').textContent = ''
 
   const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputValue}`;
   fetch(url)
@@ -49,3 +50,14 @@ const showDetailMeals = (meals) => {
     detailFood.appendChild(div);
   });
 }
+
+
+// Tiger with press enter key
+const searchInp = document.getElementById('search-input');
+const searchBtn = document.getElementById('search-button');
+
+searchInp.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    searchBtn.click()
+  }
+})
